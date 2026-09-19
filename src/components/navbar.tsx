@@ -1,9 +1,11 @@
 
 import { useState } from 'react';
-import Hero from "./hero";
+import menuIcon from "../assets/dots.png";
+import Lists from './lists';
 
 
 function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
   const links = [
     { name: "Home", href: "#home" },
     { name: "About", href: "#about" },
@@ -12,7 +14,8 @@ function Navbar() {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 px-6 py-4">
+    <div className="relative">
+    <nav className="sticky top-0 z-50 px-6">
       <div className="mx-auto flex max-w-6xl items-center justify-between rounded-2xl border border-gray-200 bg-white/90 px-6 py-3 shadow-sm backdrop-blur-md">
 
         {/* Logo */}
@@ -24,12 +27,12 @@ function Navbar() {
         </a>
 
         {/* Navigation */}
-        <ul className="hidden items-center gap-8 md:flex">
+        <ul className="hidden items-center gap-12 md:flex">
           {links.map((link) => (
             <li key={link.name}>
               <a
                 href={link.href}
-                className="text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"
+                className="text-md font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"
               >
                 {link.name}
               </a>
@@ -44,10 +47,20 @@ function Navbar() {
         >
           Let's Talk
         </a>
+        <button className='flex w-6 h-6 md:hidden rounded-lg hover:scale-110 transition duration-200' onClick={(e)=>{
+          e.stopPropagation();
+          setMenuOpen(!menuOpen);
+        }
+        }>
+          <img src={ menuIcon } />
+        </button>
 
       </div>
     </nav>
+    {menuOpen && <Lists />}
+    </div>
   );
+  
 }
 
 export default Navbar;
