@@ -127,7 +127,47 @@ def gradingStudents(grades):
     return gradesToRound
 
 
-print(gradingStudents([13,57,89,100,90,91,43,0,44,78,69 ,18]))
+# print(gradingStudents([13,57,89,100,90,91,43,0,44,78,69 ,18]))
+
+def timeConversion(s):
+    timeParts = s.split(":")
+    newTime=""
+    for part in range(len(timeParts)):
+        print("Time: " , s)
+        print("before: " ,part)
+        
+        if "pm" in timeParts[part] or "PM" in timeParts[part]:
+            timeParts[part]=timeParts[part].replace("PM","")
+            timeParts[part]=timeParts[part].replace("pm","")
+            timeParts[part] = int(timeParts[part])
+            print("After:",part)
+            print(timeParts)
+            
+            #just check from the 1st part
+            if int(timeParts[0]) < 12:
+                print("add")
+                timeParts[0]=int(timeParts[0])+12
+                print(timeParts[0])
+                if timeParts[0] >= 24:
+                    timeParts[0]=0
+    
+        elif "am" in timeParts[part] or "AM" in timeParts[part]:
+            timeParts[part]=timeParts[part].replace("AM","")
+            timeParts[part]=timeParts[part].replace("am","") 
+            if int(timeParts[0]) ==12:
+                timeParts[0]=0
+                       
+    for part in range(len(timeParts)):
+
+        timeParts[part]=f"{int(timeParts[part]):02d}"
+        newTime += str(timeParts[part])
+        if part < len(timeParts)-1:
+            newTime+=":"
+            
+    print(newTime)
+    return newTime
+
+print(timeConversion("11:05:45PM"))
 
         
 

@@ -10,9 +10,9 @@ interface compProps{
 function IntroBox({children}:compProps){
     return (
     <>
-    <div className="fixed w-full bg-blue-700 inset-0 h-3/5 py-6">
+        <div className="fixed top-0 left-0 w-full bg-blue-700 py-6">
         {children}
-    </div>
+        </div>
     </>)
 
 }
