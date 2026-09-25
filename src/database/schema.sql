@@ -112,7 +112,21 @@ CREATE TABLE education(
 
 );
 
--- Creat hero table
+-- Create profiles table
+CREATE TABLE profiles(
+    profile_id SERIAL PRIMARY KEY,
+    user_id UUID NOT NULL UNIQUE,
+    specialization VARCHAR(120),
+    overview TEXT,
+    -- added image url later
+
+    CONSTRAINT fk_user_profile FOREIGN KEY (user_id) REFERENCES users(user_id)
+
+
+);
+
+
+
 
 
  -- Create indexes to enable fast searching 
